@@ -103,6 +103,9 @@ static void parse_m_arg(char *s) {
         error("Only 64 is allowed for -m, but got %s", s);
 }
 
+/**
+ * static : c语言
+ */
 static void parseopt(int argc, char **argv) {
     cppdefs = make_buffer();
     for (;;) {
@@ -165,9 +168,12 @@ static void preprocess() {
 }
 
 int main(int argc, char **argv) {
+    //setbuf函数：设置stdout 输出缓存， null 代表立即输出（不缓存）
     setbuf(stdout, NULL);
+    //atexit :注册退出的注销函数，通常做清理内存等操作， 成功返回值 为0
     if (atexit(delete_temp_files))
         perror("atexit");
+    //解析程序执行 参数
     parseopt(argc, argv);
     lex_init(infile);
     cpp_init();
