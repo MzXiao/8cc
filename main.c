@@ -105,7 +105,17 @@ static void parse_m_arg(char *s) {
 
 /**
  * static : c语言
+ * 1. A static variable inside a function keeps its value between invocations.
+ * static 局部变量：存放在elf 数据区， 不在stack上，
+ *
+ * 2. A static global variable or a function is "seen" only in the file it's declared in
+ * static 全局变量，函数 ： 访问控制 ，除了要暴漏的函数，其他都应该是static， 只能本文件内部访问
  */
+ /**
+  * getopt函数
+  * 解析参数
+  *
+  */
 static void parseopt(int argc, char **argv) {
     cppdefs = make_buffer();
     for (;;) {
@@ -145,6 +155,7 @@ static void parseopt(int argc, char **argv) {
 
     if (!dumpast && !cpponly && !dumpasm && !dontlink)
         error("One of -a, -c, -E or -S must be specified");
+    //infile 是参数最后一个
     infile = argv[optind];
 }
 
@@ -175,6 +186,7 @@ int main(int argc, char **argv) {
         perror("atexit");
     //解析程序执行 参数
     parseopt(argc, argv);
+    //语法
     lex_init(infile);
     cpp_init();
     parse_init();

@@ -43,6 +43,20 @@ typedef struct Map {
     int nused;
 } Map;
 
+/**
+ * void指针
+ * void * 只记录地址 ,不能推断出 指针指向对象的长度
+ *  void *vp  type *p;
+ *   vp=p; (不需要转换, 只获取对象地址,不获取大小)
+ *   type *tp = (type *)vp; 可以强转
+ *  void* 指针不能复引用 ,只知道地址,不知道大小结构
+ *
+ *
+ *
+ *
+ *
+ * void **
+ */
 typedef struct {
     void **body;
     int len;
